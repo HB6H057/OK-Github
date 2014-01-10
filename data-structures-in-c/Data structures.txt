@@ -1,0 +1,62 @@
+Data structures
+	
+	Types 	
+		Collection
+		Container
+
+	Abstract 	
+
+		Associative array
+		Double-ended priority queue
+		Double-ended queue
+		List
+		Multimap
+		Priority queue
+		Queue
+		Set
+		multiset
+		Disjoint Sets
+		Stack
+	
+	Arrays 	
+	
+		Bit array
+		Circular buffer
+		Dynamic array
+		Hash table
+		Hashed array tree
+		Sparse array
+
+	Linked 	
+
+		Association list
+		Linked list
+		Skip list
+		Unrolled linked list
+		XOR linked list
+
+	Trees 	
+
+		B-tree
+		Binary search tree
+		AA
+		AVL
+		red-black
+		self-balancing
+		splay
+		Heap
+		binary
+		binomial
+		Fibonacci
+		R-tree
+		R*
+		R+
+		Hilbert
+		Trie
+		Hash tree
+
+	Graphs 	
+
+		Binary decision diagram
+		Directed acyclic word graph
+
