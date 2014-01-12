@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "scirList.h"
 
-SCIRL * create_scirlist(ELEMTYPE dat)// Create and Initialized list
+SCIRL * create_scirlist(void)// Create and Initialized list
 {
     SCIRL * listHead = NULL;
     listHead = (SCIRL *)malloc(sizeof(SCIRL));
@@ -11,8 +11,7 @@ SCIRL * create_scirlist(ELEMTYPE dat)// Create and Initialized list
     }
 
     listHead->pNext = listHead;
-    listHead->dat = dat;
-    listHead->headflag = 1; //Initialize
+    listHead->dat = 0;
     return listHead;
 
 }
@@ -27,14 +26,13 @@ int addelem_scirlist(SCIRL * listHead, ELEMTYPE dat) //add a element to list
         return 0;
     }
 
-    for (; listPtr->pNext->headflag != 1;){
+    for (; listPtr->pNext != listHead;){
         listPtr = listPtr->pNext;
     }
 
     listPtr->pNext = listNode;
     listNode->pNext = listHead;
     listNode->dat = dat;
-    listNode->headflag = 0;
 
     return 1;
 }
@@ -45,11 +43,11 @@ ELEMTYPE delelem_scirlist(SCIRL * listHead)// delete a element of list
     SCIRL * tmpPtr  = NULL;
 
     if (listHead == listHead->pNext){
-        printf("\nThis is list head!");
-        return listHead->dat;
+        printf("\n This list is empty");
+        return 0;
     }
 
-    for (; listPtr->pNext->pNext->dat != 1; ){
+    for (; listPtr->pNext->pNext != listHead; ){
         listPtr = listPtr->pNext;
     }
 
@@ -63,7 +61,7 @@ int length_scirlist(SCIRL *listHead)// list length
 {
     int len;
     SCIRL * listPtr = listHead;
-    for (len = 1; listPtr->pNext->headflag != 1; len++){
+    for (len = 0; listPtr->pNext != listHead; len++){
         listPtr = listPtr->pNext;
     }
 
@@ -82,7 +80,6 @@ int insertelem_scirlist(SCIRL * listHead, int n, ELEMTYPE dat)//insert
     }
 
     elemPtr = (SCIRL *)malloc(sizeof(SCIRL));
-    elemPtr->headflag = 0;
     elemPtr->dat = dat;
 
     if (!elemPtr){
@@ -90,20 +87,12 @@ int insertelem_scirlist(SCIRL * listHead, int n, ELEMTYPE dat)//insert
         return 0;
     }
 
-    if ( (n == 1) )
-    {
-        while (listPtr->pNext->headflag == 1){ //have bug beacuse no head pointer ;(
-            listPtr = listPtr->pNext;
-        }
 
+    while (n - 1){
+        n--;
+        listPtr = listPtr->pNext;
     }
-    else
-    {
-        while (n - 2){
-            n--;
-            listPtr = listPtr->pNext;
-        }
-    }
+
 
     elemPtr->pNext = listPtr->pNext;
     listPtr->pNext = elemPtr;
@@ -120,17 +109,18 @@ int travel_scirlist(SCIRL * listHead)
         return 0;
     }
 
-    printf("\nlist dat:");
-
-    if (listHead == listHead->pNext){
-        printf(" %d", listHead->dat);
-        return 1;
+    if (listHead->pNext == listHead){
+        printf("\nlist is empty!");
+        return 0;
     }
 
+    printf("\nlist dat:");
+
     do{
-        printf(" %d", listPtr->dat);
         listPtr = listPtr->pNext;
-    }while (!listPtr->headflag);
+        printf(" %d", listPtr->dat);
+
+    }while (listPtr->pNext != listHead);
 
     return 1;
 }

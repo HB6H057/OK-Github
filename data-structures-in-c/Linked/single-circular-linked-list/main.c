@@ -4,7 +4,7 @@
 int main(void)
 {
     SCIRL * listHead = NULL;
-    listHead = create_scirlist(1);
+    listHead = create_scirlist();
     travel_scirlist(listHead);
     printf("\n-----------add dat!");
     addelem_scirlist(listHead, 2);
